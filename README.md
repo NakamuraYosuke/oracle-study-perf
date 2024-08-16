@@ -22,6 +22,11 @@ sqlplus sys@ORACLE as sysdba
 SQL> @?/sqlplus/admin/plustrce
 ```
 
+以前作成した`HR`ユーザに対して`PLUSTRACE`ロールを付与します。
+```
+SQL> GRANT PLUSTRACE TO HR;
+```
+
 ## 共有プールのクリア
 以前に実行したSQLの情報が共有プールに残っている可能性があるため、共有プールを空にします。
 ```
