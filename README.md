@@ -22,6 +22,24 @@ Docker Desktopアプリを起動し、前回の演習で作成したOracle Datab
 実行計画を確認するためにAUTOTRACE機能を使います。
 AUTOTRACEはSQL*Plusの機能で、SQLの実行計画、および実行時に必要としたシステムリソースなどを簡単に確認することができます。また、SQLトレースには含まれないメモリソート、ディスクソートの発生回数なども確認できます。
 
+コンテナ起動後、ターミナルを起動しコンテナIDを環境変数に設定しコンテナへログインします。
+```
+docker ps
+```
+```
+CONTAINER ID   IMAGE                       COMMAND                   CREATED      STATUS                   PORTS                                            NAMES
+65bb996e0807   oracle/database:19.3.0-ee   "/bin/bash -c 'exec …"   2 days ago   Up 6 minutes (healthy)   0.0.0.0:1521->1521/tcp, 0.0.0.0:5500->5500/tcp   laughing_sutherland
+```
+コンテナIDを環境変数に設定します。
+```
+export CONTAINER_ID=65bb996e0807
+（私の環境の場合）
+```
+コンテナにログインします。
+```
+docker exec -it $CONTAINER_ID bash
+```
+
 ## 権限付与
 AUTOTRACEを利用するには、`PLUSTRACE`というロールが必要になります。
 SYSDBA権限を持つユーザでログインし、ロールを有効化します。
