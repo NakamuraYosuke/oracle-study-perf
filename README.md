@@ -26,28 +26,28 @@ SYSDBA権限を持つユーザでログインし、ロールを有効化しま�
 sqlplus sys@ORACLE as sysdba
 ```
 ```
-SQL> @?/sqlplus/admin/plustrce
+@?/sqlplus/admin/plustrce
 ```
 
 以前作成した`HR`ユーザに対して`PLUSTRACE`ロールを付与します。
 ```
-SQL> GRANT PLUSTRACE TO HR;
+GRANT PLUSTRACE TO HR;
 ```
 
 ## 共有プールのクリア
 以前に実行したSQLの情報が共有プールに残っている可能性があるため、共有プールを空にします。
 ```
-SQL> ALTER SYSTEM FLUSH SHARED_POOL;
+ALTER SYSTEM FLUSH SHARED_POOL;
 ```
 
 # 改善前の実行計画の取得
 以前作成した`HR`ユーザでログインします。
 ```
-SQL> CONN HR@ORACLE
+CONN HR@ORACLE
 ```
 AUTOTRACE機能を有効化します。
 ```
-SQL> SET AUTOTRACE ON
+SET AUTOTRACE ON
 ```
 > [!TIP]
 AUTOTRACEはONとする場合はSQLの結果と実行計画が出力されます。
@@ -55,7 +55,7 @@ AUTOTRACEはONとする場合はSQLの結果と実行計画が出力されます
 
 以前に実行した、EMPLOYEESテーブルにあるSALARYが最も高い従業員の情報を取得するSQLを実行します。
 ```
-SQL> SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
 ```
 
 以下の実行計画が出力されます。
@@ -110,9 +110,9 @@ Statistics
 
 AUTOTRACE機能を無効化し、SYSDBA権限を持つユーザでログインし、再度共有プールを空にします。
 ```
-SQL> SET AUTOTRACE OFF
-SQL> CONN SYS AS SYSDBA
-SQL> ALTER SYSTEM FLUSH SHARED_POOL;
+SET AUTOTRACE OFF
+CONN SYS AS SYSDBA
+ALTER SYSTEM FLUSH SHARED_POOL;
 ```
 
 > [!IMPORTANT]
@@ -125,11 +125,11 @@ SQL> ALTER SYSTEM FLUSH SHARED_POOL;
 # インデックスの作成
 HRユーザでログインします。
 ```
-SQL> CONN HR@ORACLE
+CONN HR@ORACLE
 ```
 `EMPLOYEES`テーブルの`SARALY`カラムに対して、`IDX_EMPLOYEES_SARALY`という名前のインデックスを作成します。
 ```
-SQL> CREATE INDEX IDX_EMPLOYEES_SALARY ON EMPLOYEES (SALARY);
+CREATE INDEX IDX_EMPLOYEES_SALARY ON EMPLOYEES (SALARY);
 ```
 
 > [!TIP]
@@ -146,11 +146,11 @@ SQL> CREATE INDEX IDX_EMPLOYEES_SALARY ON EMPLOYEES (SALARY);
 # 改善後の実行計画の取得
 AUTOTRACEを有効化し、再度参照クエリを実行します。
 ```
-SQL> SET AUTOTRACE ON
+SET AUTOTRACE ON
 ```
 
 ```
-SQL> SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
 ```
 
 ```
