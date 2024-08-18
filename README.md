@@ -16,6 +16,9 @@ https://github.com/NakamuraYosuke/oracle-study
 - 改善結果考察
 
 # 事前準備
+Docker Desktopアプリを起動し、前回の演習で作成したOracle Databaseコンテナを起動します。
+![](images/docker_desktop.png)
+
 実行計画を確認するためにAUTOTRACE機能を使います。
 AUTOTRACEはSQL*Plusの機能で、SQLの実行計画、および実行時に必要としたシステムリソースなどを簡単に確認することができます。また、SQLトレースには含まれないメモリソート、ディスクソートの発生回数なども確認できます。
 
