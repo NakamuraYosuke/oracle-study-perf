@@ -7,6 +7,13 @@
 
 https://github.com/NakamuraYosuke/oracle-study
 
+# ハンズオンの流れ
+- AUTOTRACE機能を有効化するためのPLUSTRACE権限の付与
+- 共有プールのクリア
+- サンプルSQLを元にした実行計画の見方
+- 改善箇所の検討
+- インデックスの付与
+- 改善結果考察
 
 # 事前準備
 実行計画を確認するためにAUTOTRACE機能を使います。
@@ -193,3 +200,9 @@ Statistics
 > recursive calls（Oracle内部の再帰SQLの実行回数）やconsistent gets（読み取りブロック数）の値はどのように変化しているでしょうか。
 >
 > また、これら値の変化からインデックス作成はどのような効果があると評価できるでしょうか。
+
+>　[!IMPORTANT]
+`consintenst gets`や`physical reads`の数値を小さくすることでSQLの実行時間を短くでき性能向上が見込めます。
+>
+> 本カリキュラムで実施したインデックスの付与だけでなく、チューニングにはテーブルの結合順序の制御など様々な手法があります。
+
