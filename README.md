@@ -219,8 +219,9 @@ Statistics
 
 > [!NOTE]
 > recursive calls（Oracle内部の再帰SQLの実行回数）やconsistent gets（読み取りブロック数）の値はどのように変化しているでしょうか。
->
 > また、これら値の変化からインデックス作成はどのような効果があると評価できるでしょうか。
+
+
 
 >　[!IMPORTANT]
 `consintenst gets`や`physical reads`の数値を小さくすることでSQLの実行時間を短くでき性能向上が見込めます。
